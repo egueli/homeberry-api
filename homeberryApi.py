@@ -9,26 +9,6 @@ app = Flask(__name__)
 def helloWorld():
 	return "Hello World\n"
 
-@app.route("/bt_speaker/stop")
-def stopBtSpeaker():
-	subprocess.run("sudo systemctl stop bt_speaker".split())
-	return "Stopping bt_speaker service"
-
-@app.route("/bt_speaker/start")
-def startBtSpeaker():
-	subprocess.run("sudo systemctl start bt_speaker".split())
-	return "Starting bt_speaker service"
-
-@app.route("/kodi/kill")
-def killKodi():
-	subprocess.run("sudo systemctl stop kodi".split())
-	return "Killing Kodi service"
-
-@app.route("/kodi/start")
-def startKodi():
-	subprocess.run("sudo systemctl start kodi".split())
-	return "Starting Kodi service"
-
 @app.route("/nordvpn")
 def switchNordVpnCountry():
 	country = request.args.get('country')
