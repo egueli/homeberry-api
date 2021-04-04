@@ -32,7 +32,7 @@ def startKodi():
 @app.route("/nordvpn")
 def switchNordVpnCountry():
 	country = request.args.get('country')
-	subprocess.run(["sudo", "/home/pi/switch.sh", country])
+	subprocess.run(["sudo", "/home/pi/switch.sh", country], check=True)
 	return f"Switching to NordVPN server with country '{country}'"
 
 @app.route("/shutdown")
