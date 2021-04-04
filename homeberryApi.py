@@ -1,5 +1,6 @@
 #!/home/pi/homeberryApi/bin/python
 from flask import Flask
+from flask import request
 import subprocess
 
 app = Flask(__name__)
@@ -27,6 +28,12 @@ def killKodi():
 def startKodi():
 	subprocess.run("sudo systemctl start kodi".split())
 	return "Starting Kodi service"
+
+@app.route("/nordvpn")
+def switchNordVpnCountry():
+	country = request.args.get('country')
+	subprocess.run(["sudo", "/home/pi/switch.sh", country])
+	return f"Switching to NordVPN server with country '{country}'"
 
 @app.route("/shutdown")
 def shutdown():
